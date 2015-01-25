@@ -1,7 +1,9 @@
 from django.contrib import admin
 from Car.models import Car, Dealer, Model_, Mark, Comments
 from checkup.models import Checkup, TypeOfService
-from testdrive.models import Testdrive
+from testdrive.models import TestDrive
+from order.models import Order,Cart
+
 
 # Register your models here.
 
@@ -22,5 +24,6 @@ admin.site.register(Mark)
 admin.site.register(Comments)
 admin.site.register(Checkup)
 admin.site.register(TypeOfService)
-admin.site.register(Testdrive)
-
+admin.site.register(TestDrive)
+admin.site.register(Order)
+admin.site.register(Cart)

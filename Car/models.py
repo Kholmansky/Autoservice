@@ -10,8 +10,7 @@ class Dealer(models.Model):
     address = models.CharField(max_length=300)
     country = models.CharField(max_length=300)
 
-    def __str__(self):
-        return self.address
+
 
 
 class Mark(models.Model):

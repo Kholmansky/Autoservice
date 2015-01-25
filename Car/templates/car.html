@@ -1,11 +1,18 @@
 {% extends "main.html" %}
 {% block car%}
+ <form action="/order/cart_all/" method="post">
+     {% csrf_token %}
 <h2>Информация о машине</h2>
             <div class="col col_13">
         	<a  rel="lightbox[portfolio]" href="images/product/10_l.jpg" title="Lady Shoes"><img src="{{ MEDIA_URL }}{{ car.car_img.name }}" alt="Image 10" /></a>
             </div>
+
             <div class="col col_13 no_margin_right">
                 <table>
+                     <tr>
+                        <td height="30" width="160">Марка:</td>
+                        <td><input name="id" value={{car.id}} ></p></td>
+                    </tr>
                     <tr>
                         <td height="30" width="160">Марка:</td>
                         <td>{{ car.mark.name }}</td>
@@ -30,18 +37,19 @@
                         <td height="30">Цена:</td>
                         <td>{{ car.price }}</td>
                     </tr>
-                    <tr><td height="30">Количество</td><td><input type="text" value="1" style="width: 20px; text-align: right" /></td></tr>
+                    <tr><td height="30">Количество</td><td><input name="quantity" type="text" value="1" style="width: 20px; text-align: right" /></td></tr>
                 </table>
                 <div class="cleaner h20"></div>
-                <form action="/add/to/cart/car_slug/" method="post">
-                <a  class="add_to_cart" onClick="addDish({{ car.id }}, {{ car.price }})">Добавить в корзину</a>
-                <img src="" class="btn btn-default" onClick="addDish({{ car.id }}, {{ car.price }})" role="button" title="Добавить в корзину">
-                </form>
+                <a  class="add_to_cart" onClick="">Добавить в корзину</a>
+                <img src="" class="btn btn-default" onClick="" role="button" title="Добавить в корзину">
+                <input type="submit" value="Записаться" id="reset" name="reset" class="submit_btn float_r" />
 			</div>
             <div class="cleaner h30"></div>
 
             <h5><strong>Описание:</strong></h5>
             <p>{{ car.description }}</p>
+
+</form>
 <hr>
             <h3>Комментарии:</h3>
     {% for n in comments %}
@@ -55,25 +63,4 @@
 
     </form>
 
-<script type="text/javascript">
-        $(document).ready(function() {
-            $.get("{% url 'cart_loading' %}", function(data) {
-                var cart_value = Number(data);
-                var cart_value_str = String(cart_value) + " р.";
-                $("#cart_value").text(cart_value_str);
-            });
-        })
-
-        function addDish(car_id, car_price) {
-            $.get("{% url 'cart_updating' %}", {"id" : car_id}, function(data) {
-               updateCart(car_id, car_price);
-            });
-        }
-
-        function updateCart(car_id, car_price) {
-            var cart_price = Number($('#cart_value').text().split(" ")[0]);
-            var new_cart_price = cart_price + car_price;
-            $('#cart_value').text(new_cart_price + " р.");
-        }
-    </script>
 {% endblock %}

@@ -3,16 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Web Store - Products</title>
+<title>Автосервис</title>
 <meta name="keywords" content="web store, products, free templates, website templates, CSS, HTML" />
 <meta name="description" content="Web Store, Products, free CSS template by templatemo.com" />
 <link  href="{% static "css/templatemo_style.css" %}"   rel="stylesheet" type="text/css" />
-
+<link type="text/css" href="{% static "css/latest.css" %}"  rel="Stylesheet" />
 <link rel="stylesheet" type="text/css" href="{% static "css/ddsmoothmenu.css" %}" />
-
+<script language="Javascript" type="text/javascript" src="http://yapro.ru/javascript/jquery.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/ddsmoothmenu.js">
-
+<script type="text/javascript" src="js/ddsmoothmenu.js"></script>
+<script type="text/javascript" src="{% static "js/latest.js" %}">
 /***********************************************
 * Smooth Navigational Menu- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
 * This notice MUST stay intact for legal use
@@ -56,7 +56,7 @@ function clearText(field)
 						itemsSelector: '.SlideItMoo_element',
 						itemWidth: 171,
 						showControls:1});
-		}
+		},
 
 	});
 </script>
@@ -67,20 +67,31 @@ function clearText(field)
 
 <div id="templatemo_wrapper">
 	<div id="templatemo_header">
-    	<div id="site_title"><h1><a href="http://www.templatemo.com"> </a></h1></div>
+    	<div id="site_title"><h1><a href="http://www.templatemo.com"> _</a></h1></div>
         <div id="header_right">
         <a href="/order/cart"><img src="/static/images/cart-trans.png" width="75" height="75" alt="Корзина" /></a>
+            <div class="top-bar">
+                <section class="top-bar-section">
+                    <ul class="right">
+                        {% if username %}
+                            <a href="/auth/logout/">Выйти ({{ username }})</a>
+                        {% else %}
+                            <a href="/auth/login/">Войти</a>
+                        {% endif %}
+                    </ul>
+                </section>
+            </div>
          </div>
     </div> <!-- END of header -->
 
     <div id="templatemo_menu" class="ddsmoothmenu">
         <ul>
-            <li><a href="index.html"  class="selected">Главная</a></li>
-            <li><a href="products.html">Каталог</a>
+            <li><a href="/cars/shop_inf/">Главная</a></li>
+            <li><a href="/cars/all/">Каталог</a>
             </li>
-            <li><a href="about.html">Техосмотр</a>
+            <li><a href="/checkup/add/">Техосмотр</a>
             </li>
-            <li><a href="faqs.html">Тест-драйв</a></li>
+            <li><a href="/testdrive/write/">Тест-драйв</a></li>
         </ul>
         <br style="clear: left" />
     </div> <!-- end of templatemo_menu -->
@@ -89,19 +100,19 @@ function clearText(field)
     <div id="templatemo_main_top"></div>
     <div id="templatemo_main">
          <div id="sidebar">
-        	<h3>Categories</h3>
+        	<h3>Категории</h3>
             <ul class="sidebar_menu">
-                <li><a href="/cars/category/2/">Audi</a></li>
-                <li><a href="/cars/category/3/">Acura</a></li>
-                <li><a href="/cars/category/4/">BMW</a></li>
-                <li><a href="/cars/category/5/">Chevrolet</a></li>
-                <li><a href="/cars/category/6/">Ford</a></li>
-                <li><a href="/cars/category/7/">Honda</a></li>
-                <li><a href="/cars/category/8/">Hyundai</a></li>
-                <li><a href="/cars/category/9/">Lexus</a></li>
-                <li><a href="/cars/category/10/">Mazda</a></li>
-                <li><a href="/cars/category/11/">Toyota</a></li>
-            </ul>
+			    <li><a href="/cars/category/1/">Audi</a></li>
+                <li><a href="/cars/category/2/">Acura</a></li>
+                <li><a href="/cars/category/3/">BMW</a></li>
+                <li><a href="/cars/category/4/">Chevrolet</a></li>
+                <li><a href="/cars/category/5/">Ford</a></li>
+                <li><a href="/cars/category/6/">Honda</a></li>
+                <li><a href="/cars/category/7/">Hyundai</a></li>
+                <li><a href="/cars/category/8/">Lexus</a></li>
+                <li><a href="/cars/category/9/">Mazda</a></li>
+                <li><a href="/cars/category/10/">Toyota</a></li>
+			</ul>
         </div> <!-- END of sidebar -->
 
         <div id="content">
@@ -110,7 +121,8 @@ function clearText(field)
         {% block  login %}{% endblock %}
             {% block car %}{% endblock %}
             {% block cart%}{% endblock %}
-
+            {% block car_inf %}{% endblock %}
+            {% block mark%}{% endblock %}
      <!-- ______________________________________________________________________________________________________________________________________ -->
             <div class="cleaner"></div>
         </div> <!-- END of content -->
@@ -122,10 +134,10 @@ function clearText(field)
         <div class="col col_16">
         	<h4>Страницы</h4>
             <ul class="footer_menu">
-            	<li><a href="#">Главная</a></li>
-                <li><a href="#">Каталог</a></li>
-                <li><a href="#">Техосмотр</a></li>
-                <li><a href="#">Тест-драйв</a></li>
+            	<li><a href="/cars/shop_inf/">Главная</a></li>
+                <li><a href="/cars/all/">Каталог</a></li>
+                <li><a href="/checkup/add/">Техосмотр</a></li>
+                <li><a href="/testdrive/write/">Тест-драйв</a></li>
 			</ul>
         </div>
         <div class="col col_16">
@@ -149,13 +161,12 @@ function clearText(field)
         </div>
         <div class="col col_13 no_margin_right">
         	<h4>Описание</h4>
-
-            <p>Данное веб-приложение является показательной реализацией нашего проекта, в основе которого лежит выбор автомобиля для возможной его покупки в будущем. Кроме того, есть также доп. услуги такие, как техосмотр и тест-дрйв. </p>
+            <p>Данное веб-приложение является показательной реализацией нашего проекта, в основе которого лежит выбор автомобиля для возможной его покупки в будущем. Кроме того, есть также доп.услуги такие, как техосмотр и тест-дрйв.</p>
         </div>
 
         <div class="cleaner h40"></div>
 		<center>
-			Copyright © 2048 Your Company Name | Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
+			Copyright © 2015 Группа 8ВМ43, Томск, Россия | Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
 		</center>
     </div> <!-- END of footer -->
 

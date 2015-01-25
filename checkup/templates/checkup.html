@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% block  login %}
+
+      <div id="contact_form">
+    <form action="/checkup/add/" method="post" name="contact">
+
+        {% csrf_token %}
+
+        <label for="marka">Марка/модель:</label>
+        <input type="text" name="marka" id="marka" class="required input_field">
+
+        <label for="reg_number">Регистрационный номер:</label>
+        <input type="text" name="reg_number" id="reg_number" class="validate-email required input_field">
+
+        <label for="run">Пробег:</label>
+        <input type="text" name="run" id="run" class="validate-email required input_field">
+
+        <label for="date_completed">Дата выполнения:</label>
+        <input name="date_completed" id="date_completed" value="2010-01-23" class="datepickerTimeField required input_field">
+
+        <label for="type_of_service">Виды услуг:</label>
+        <p><select name="type_of_service" id="type_of_service" style="width : 200" class="validate-email required input_field">
+                {% for servis in service %}
+                <option value="{{servis.id}}" >{{servis.name}}- {{servis.price}}руб. </option>
+                {% endfor %}
+         </select></p>
+
+        <p><input type="submit" value="Записаться" id="reset" name="reset" class="submit_btn float_r" /></p>
+
+    </form>
+    </div>
+{% endblock %}
+
+date_completed = models.DateField(null=True, blank=True)
+    reg_number = models.CharField(max_length=15)
+    run = models.IntegerField()
+    car_man_year = models.ForeignKey(Car)
+    user = models.ForeignKey(User)
+    type_of_service = models.ForeignKey(TypeOfService)

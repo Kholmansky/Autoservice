@@ -1,17 +1,21 @@
 {% extends 'main.html' %}
 {% block login %}
-    <div class="large-offset-3 large-6 columns">
-    <form action="/auth/login/" method="post">
+    <div id="contact_form">
+    <form action="/auth/login/" method="post" name="contact">
         {% csrf_token %}
-        <label for="username">Имя пользователя</label>
-        <input type="text" name="username" id="username">
-        <label for="password">Пароль</label>
-        <input type="password" name="password" id="password">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" name="username" id="username" class="required input_field">
+        <label for="password">Пароль:</label>
+        <input type="password" name="password" id="password" class="validate-email required input_field">
         {% if login_error %}
             <label class="error">{{ login_error }}</label>
         {% endif %}
-        <input class="button" type="submit" value="Войти">
+      <p></p>
+        <input type="submit" value="Вход" id="reset" name="reset" class="submit_btn float_r" />
     <div class="label round secondary"><a href="/auth/register/">Регистрация</a></div>
     </form>
     </div>
+
+
+
 {% endblock %}

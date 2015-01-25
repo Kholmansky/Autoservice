@@ -4,7 +4,9 @@ from Car.models import Car
 from django.utils import timezone
 
 
-class Testdrive(models.Model):
+class TestDrive(models.Model):
+    class Meta:
+        db_table = "Testdrive"
 
     car = models.ForeignKey(Car)
     user = models.ForeignKey(User)

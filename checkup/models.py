@@ -18,6 +18,6 @@ class Checkup(models.Model):
     date_completed = models.DateField(null=True, blank=True)
     reg_number = models.CharField(max_length=15)
     run = models.IntegerField()
-    car_man_year = models.ForeignKey(Car)
+    car = models.CharField(max_length=450)
     user = models.ForeignKey(User)
     type_of_service = models.ForeignKey(TypeOfService)

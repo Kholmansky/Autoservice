@@ -2,6 +2,7 @@ from django.shortcuts import render,render_to_response,redirect
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.contrib.auth.forms import UserCreationForm
+#from logsys.user_reg import UserCreationForm
 from Car.forms import Registration
 # Create your views here.
 #-*- encoding: utf-8 -*-
@@ -30,14 +31,21 @@ def register(reguest):
     args.update(csrf(reguest))
     args['form'] = UserCreationForm()
     if reguest.POST:
+        username = reguest.POST.get('username', '')
+        password2 = reguest.POST.get('password2', '')
+        email = reguest.POST.get('email', '')
+        first_name = reguest.POST.get('first_name', '')
+        last_name = reguest.POST.get('last_name', '')
+
         new_user_form = UserCreationForm(reguest.POST)
         new_user_form.save()
-        new_user = auth.authenticate(username= new_user_form.cleaned_data['username'],
-                                      password= new_user_form.cleaned_data['password2'],
-                                      email=new_user_form.cleaned_data['email'],
-                                      first_name=new_user_form.cleaned_data['first_name'],
-                                      last_name=new_user_form.cleaned_data['last_name']
+        new_user = auth.authenticate(username= username,
+                                      password= password2,
+                                      email=email,
+                                      first_name=first_name,
+                                      last_name=last_name
                                         )
+
         auth.login(reguest, new_user)
         args['word']= "Thank you for registering"
         args['form']= new_user_form

@@ -9,12 +9,6 @@ from django.contrib.auth.models import User
 from .forms import CommentForm
 from django.contrib import auth
 
-def car_mark(request, car_mark=1):
-    return render_to_response(
-        'car_mark.html',
-        {'form':Car.objects.filter(mark=car_mark), 'username': auth.get_user(request).username},
-        context_instance=RequestContext(request)
-)
 
 def car_all(request):
     return render_to_response(
@@ -23,6 +17,12 @@ def car_all(request):
         context_instance=RequestContext(request)
     )
 
+def car_mark(request, car_mark=1):
+    return render_to_response(
+        'car_mark.html',
+        {'form':Car.objects.filter(mark=car_mark), 'username': auth.get_user(request).username},
+        context_instance=RequestContext(request)
+)
 
 def car(request, car_id=1):
     comments_form = CommentForm
@@ -38,7 +38,8 @@ def car(request, car_id=1):
 def shop_inf(request):
     comments_form = CommentForm
     args = {}
-    return render_to_response('shop_inf.html', args)
+    args['username'] = auth.get_user(request).username
+    return render_to_response('shop_inf.html', args,)
 
 
 def add_comments(request, car_id):

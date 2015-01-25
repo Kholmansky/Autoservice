@@ -1,17 +1,26 @@
 {% extends 'main.html' %}
 {% block  login %}
 
-    <div class="large-offset-3 large-6 columns">
-        <h1>
-            <form action="/auth/register/" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <input class="button" type="submit" value="Зарегистрироваться" align = "center">
-                <font size="5"  color="red">{{ word }}</font>
-            </form>
-        </h1>
-        <h2>
-            <input class="button" type="submit" value="Зарегистрироваться" align = "center">
-        </h2>
+      <div id="contact_form">
+    <form action="/auth/register/" method="post" name="contact">
+        {% csrf_token %}
+        <label for="username">Имя пользователя:</label>
+        <input type="text" name="username" id="username" class="required input_field">
+        <label for="password1">Пароль:</label>
+        <input type="password" name="password1" id="password1" class="validate-email required input_field">
+        <label for="password2">Повторите пароль:</label>
+        <input type="password" name="password2" id="password2" class="validate-email required input_field">
+        <label for="email">Адрес электронной почты:</label>
+        <input type="text" name="email" id="email" class="required input_field">
+        <label for="first_name">Имя:</label>
+        <input type="text" name="first_name" id="first_name" class="required input_field">
+        <label for="last_name">Фамилия:</label>
+        <input type="text" name="last_name" id="last_name" class="required input_field">
+        {% if login_error %}
+            <label class="error">{{ login_error }}</label>
+        {% endif %}
+      <p></p>
+        <input type="submit" value="Зарегистрироваться" id="reset" name="reset" class="submit_btn float_r" />
+    </form>
     </div>
 {% endblock %}

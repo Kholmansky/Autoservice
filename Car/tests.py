@@ -13,6 +13,7 @@ class ModelTest(TestCase):
         )
 
 
+
 class CommentsTest(TestCase):
     def test_add_comment_view(self):
         mark1 = Mark.objects.create(name='mark1')

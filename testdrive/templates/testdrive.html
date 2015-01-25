@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% block mark%}
+
+
+<script>
+                $(".datepickerTimeField").datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        dateFormat: 'dd.mm.yy',
+                        firstDay: 1, changeFirstDay: false,
+                        navigationAsDateFormat: false,
+                        duration: 0// отключаем эффект появления
+                });
+ </script>
+<div id="contact_form">
+        <form action="/testdrive/write/" method="post" name="contact">
+                {% csrf_token %}
+                <p>Выберать автомобиль: <select name="ComboBox" style="width : 200" class="validate-email required input_field">
+                {% for mark in car %}
+                <option value="{{mark.id}}" >{{mark.model}}</option>
+                {% endfor %}
+                </select></p>
+                <p>Дата и время:  <input name="min" value="2010-01-23" class="datepickerTimeField required input_field"></p>
+                <input type="submit" value="Записаться" id="reset" name="reset" class="submit_btn float_r" /><p>{{word}}</p>
+
+        </form>
+</div>
+{% endblock %}
