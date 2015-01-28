@@ -1,3 +1,4 @@
+#-*- encoding: utf-8 -*-
 from django.shortcuts import render
 from Car.forms import TestDriveForm
 from Car.models import Car
@@ -22,6 +23,13 @@ def add_checkup(request):
                    user=User.objects.get(id= auth.get_user(request).id)
                    )
         de.save()
-        args['word'] = "asdasd"
+        args['word'] = "Спасибо за запись на техосмотр!"
     args['username'] = auth.get_user(request).username
     return render_to_response('checkup.html',args)
+
+def delete_checkup(request,id_service):
+    args={}
+    args.update(csrf(request))
+    de = Checkup.objects.get(id=id_service)
+    de.delete()
+    return redirect('/order/cart/')

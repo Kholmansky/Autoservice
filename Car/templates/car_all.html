@@ -6,9 +6,9 @@
 {% for car in form %}
 <div class="col col_14 product_gallery">
             	<a href="/cars/get/{{ car.id }}/"><img src="{{ MEDIA_URL }}{{ car.car_img.name }}" alt="Product 01" width="230" height="160" /></a>
-                <h3><a href="/cars/get/{{ car.id }}/">{{ car.mark }}</a></h3>
-                <p class="product_price">{{car.price}}</p>
-                <a href="cart.html" class="add_to_cart">Добавить в корзину</a>
+                <h3><a href="/cars/get/{{ car.id }}/">Автомобиль: {{ car.model }}</a></h3>
+                <p class="product_price">Цена: {{car.price}}</p>
+
             </div>
 {% endfor %}
 </div>

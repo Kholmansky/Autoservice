@@ -11,7 +11,7 @@ class TestDrive(models.Model):
     car = models.ForeignKey(Car)
     user = models.ForeignKey(User)
     date_created = models.DateTimeField(default=timezone.now)
-    date_completed = models.DateField(null=True, blank=True)
+    date_completed = models.DateField()
 
 
 

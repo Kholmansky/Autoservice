@@ -9,6 +9,7 @@ from checkup.models import Checkup
 from testdrive.models import TestDrive
 
 def cart(request):
+
     return render_to_response('cart.html',
                               {'form': Cart.objects.filter(user=User.objects.get(id= auth.get_user(request).id)),
                                'checkup':Checkup.objects.filter(user=User.objects.get(id= auth.get_user(request).id)),
@@ -26,7 +27,6 @@ def add_cart(reguest):
                 user=User.objects.get(id= auth.get_user(reguest).id),
                 quantity=reguest.POST.get('quantity',''))
         de.save()
-        args['word'] = "asdasd"
     return redirect('/order/cart/')
 
 def delete_cart(request,id_cart):

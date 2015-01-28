@@ -4,15 +4,11 @@
      {% csrf_token %}
 <h2>Информация о машине</h2>
             <div class="col col_13">
-        	<a  rel="lightbox[portfolio]" href="images/product/10_l.jpg" title="Lady Shoes"><img src="{{ MEDIA_URL }}{{ car.car_img.name }}" alt="Image 10" /></a>
+        	<a  rel="lightbox[portfolio]" href="images/product/10_l.jpg" title="Baby Cars"><img src="{{ MEDIA_URL }}{{ car.car_img.name }}" alt="Image 10" height="200" width="250" /></a>
             </div>
-
+            <input name="id" type="hidden" value="{{ car.id }}" style="width: 20px; text-align: right" />
             <div class="col col_13 no_margin_right">
                 <table>
-                     <tr>
-                        <td height="30" width="160">Марка:</td>
-                        <td><input name="id" value={{car.id}} ></p></td>
-                    </tr>
                     <tr>
                         <td height="30" width="160">Марка:</td>
                         <td>{{ car.mark.name }}</td>
@@ -40,9 +36,7 @@
                     <tr><td height="30">Количество</td><td><input name="quantity" type="text" value="1" style="width: 20px; text-align: right" /></td></tr>
                 </table>
                 <div class="cleaner h20"></div>
-                <a  class="add_to_cart" onClick="">Добавить в корзину</a>
-                <img src="" class="btn btn-default" onClick="" role="button" title="Добавить в корзину">
-                <input type="submit" value="Записаться" id="reset" name="reset" class="submit_btn float_r" />
+                <input type="submit" value="Добавить в корзину" id="reset" name="reset" class="add_to_cart" />
 			</div>
             <div class="cleaner h30"></div>
 

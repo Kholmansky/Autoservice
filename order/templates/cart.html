@@ -5,7 +5,7 @@
                         	<th width="220" align="left">Изображение </th>
                         	<th width="180" align="left">Модель </th>
                        	  	<th width="100" align="center">Количество </th>
-                        	<th width="60" align="right">Вид </th>
+
                         	<th width="60" align="right">Сумма </th>
                         	<th width="90"> </th>
 
@@ -14,11 +14,11 @@
                         {% for cart in form %}
                     	<tr>
                         	<td><a href="/cars/get/{{ car.id }}/"><img src="{{ MEDIA_URL }}{{ cart.vehicle.car_img.name }}" alt="Product 01" width="150" height="100"/></a></td>
-                        	<td>{{cart.vehicle.mark}}</td>
-                            <td align="center"><input type="text" value="{{cart.quantity}}" style="width: 20px; text-align: right" /> </td>
-                            <td align="right">{{cart.price}} </td>
-                            <td align="right">{{cart.quantity}}* {{cart.price}}</td>
-                            <td align="center"> <a href="/order/cart/{{ cart.id }}/"><img src="/static/images/remove_x.gif" alt="remove" /><br />Remove</a> </td>
+                        	<td>{{cart.vehicle.model}}</td>
+                            <td align="center">{{cart.quantity}} </td>
+
+                            <td align="right">{{cart.quantity}} * {{cart.price}}</td>
+                            <td align="center"> <a href="/order/cart/{{ cart.id }}/"><img src="/static/images/remove_x.gif" alt="remove" /><br />Удалить</a> </td>
 						</tr>
                         {% endfor %}
 					</table>
@@ -36,23 +36,20 @@
                     	<tr>
                         	<td align="center">{{cart1.type_of_service.name}}</td>
                             <td align="center">{{cart1.type_of_service.price}} </td>
-                            <td align="center"> <a href="/order/cart/{{ cart.id }}/"><img src="/static/images/remove_x.gif" alt="remove" /><br />Remove</a> </td>
+                            <td align="center"> <a href="/checkup/delete/{{ cart1.id }}/"><img src="/static/images/remove_x.gif" alt="remove" /><br />Удалить</a> </td>
 						</tr>
                         {% endfor %}
                         {% for cart2 in testdrive %}
                     	<tr>
                         	<td align="center">Тест-драйв({{cart2.car.model}})</td>
                             <td align="center">0 </td>
-                            <td align="center"> <a href="/order/cart/{{ cart.id }}/"><img src="/static/images/remove_x.gif" alt="remove" /><br />Remove</a> </td>
+                            <td align="center"> <a href="/testdrive/delete/{{ cart2.id }}/"><img src="/static/images/remove_x.gif" alt="remove" /><br />Удалить</a> </td>
 						</tr>
                         {% endfor %}
 
 </table>
                     <div style="float:right; width: 215px; margin-top: 20px;">
-
-                        <div class="checkout"><a href="checkout.html" class="more">Proceed to Checkout</a></div>
-                        <div class="cleaner h20"></div>
-                        <div class="continueshopping"><a href="javascript:history.back()" class="more">Continue Shopping</a></div>
+                        <div class="continueshopping"><a href="/cars/all/" class="submit_btn float_r">Продолжить покупку</a></div>
 
                     </div>
 {% endblock %}

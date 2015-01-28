@@ -7,5 +7,5 @@ urlpatterns = patterns('',
                        # url(r'^blog/', include('blog.urls')),
 
                        url(r'^write/', 'testdrive.views.add_test_drive'),
-
+                       url(r'^delete/(?P<id_service>\d+)', 'testdrive.views.delete_test_drive'),
                         )
